@@ -61,7 +61,16 @@ background-color: #777777;
         }
       }
     }
-
   }
+}
+.popup {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: white;
+  border: 2px solid grey;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
