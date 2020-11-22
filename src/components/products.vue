@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products" :class="{'test': isModalVisible}">
     <h2>Products</h2>
     <div class="status-line">
       <div class="item-count">{{displayedProducts.length}} items</div>
@@ -19,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4" v-for="(shirt, shirtIndex) in displayedProducts" :key="shirtIndex">
-          <div class="item">
+          <div class="item" @click="showModal(shirt.id)">
             <div class="image-wrapper">
               <img :src="require('../assets/products/' + shirt.image)" :alt="shirt.name">
             </div>
@@ -31,11 +31,14 @@
         </div>
       </div>
     </div>
+    <Modal v-show="isModalVisible"
+    @close="closeModal" :shirtId="this.modalId"></Modal>
   </div>
 </template>
 
 <script>
   import json from '../assets/json/products.json'
+  import Modal from '../components/modal.vue'
 
   export default {
     name: 'Products',
@@ -46,10 +49,24 @@
         selectedCat: 'Price - Low to High',
         sizes: ['All', 'S', 'M', 'L', 'XL'],
         selectedSize: 'All',
-        displayedProducts: []
+        displayedProducts: [],
+        isModalVisible: false,
+        modalId: ''
       }
     },
+    components: {
+        Modal
+    },
     methods: {
+      showModal(el) {
+        this.isModalVisible = true;
+        this.modalId = el
+        console.log(this.modalId);
+      },
+      closeModal() {
+        this.isModalVisible = false;
+        this.modalId = ''
+      },
       matchingSize (el) {
         this.displayedProducts = []
         if (el == 'All') {

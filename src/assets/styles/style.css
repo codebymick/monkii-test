@@ -44,12 +44,15 @@
 
 .popup {
   position: absolute;
-  width: 50%;
+  width: auto;
   height: 50%;
   background: white;
   border: 2px solid grey;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  text-align: center; }
+  .popup > div {
+    padding: 40px 0; }
 
 /*# sourceMappingURL=style.css.map */

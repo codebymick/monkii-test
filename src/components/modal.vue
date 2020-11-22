@@ -1,13 +1,12 @@
 <template>
-  <div class="popup">
+  <div class="popup" @click="close">
     <div class="row">
-      <div class="col-12" v-for="(shirt, shirtIndex) in products" :key="shirtIndex">
-        <div class="item">
+      <div class="col-12 text-centered" v-for="(shirt, shirtIndex) in products" :key="shirtIndex">
+        <div class="item" v-if="shirtId==shirt.id">
           <div class="image-wrapper">
             <img :src="require('../assets/products/' + shirt.image)" :alt="shirt.name">
           </div>
           <div class="item-data">
-            <div>{{shirtId}}</div>
             <div>{{shirt.name}}</div>
             <div>${{shirt.price}}</div>
           </div>
@@ -29,6 +28,11 @@
   },
   props: {
     shirtId: Number
+  },
+  methods: {
+    close() {
+      this.$emit('close');
+    }
   }
 }
 </script>
