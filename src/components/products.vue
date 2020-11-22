@@ -3,13 +3,12 @@
     <h2>Products</h2>
     <div class="status-line">
       <div class="item-count">{{displayedProducts.length}} items</div>
-<!--      <div>-->
-<!--        <label class="filter-label">Order by: </label>-->
-<!--        <select class="text-capitalize" v-model="showOrder" size="1.5">-->
-<!--          <option v-for="(ord, ordIndex) in category" :key="ordIndex" :value="orderedBy" >{{ord}}</option>-->
-<!--        </select>-->
-<!--      </div>-->
       <div class="filters">
+          <label class="filter-label">Order by: </label>
+          <select class="text-capitalize" v-model="showOrder" size="1.5" @change="orderByPrice(showOrder)">
+            <option v-for="(ord, ordIndex) in category" :key="ordIndex" :value="orderedBy" >{{ord}}</option>
+          </select>
+
         <label class="filter-label">Filter by Size: </label>
         <select class="text-capitalize" v-model="selectedSize" size="1.5" @change="matchingSize(selectedSize)">
           <option v-for="(siz, sizIndex) in sizes" :key="sizIndex" :value="siz">{{siz}}</option>
@@ -22,8 +21,10 @@
         <div class="image-wrapper">
           <img :src="require('../assets/products/' + shirt.image)" :alt="shirt.name">
         </div>
-        <div>{{shirt.name}}</div>
-        <div>${{shirt.price}}</div>
+        <div class="item-data">
+          <div>{{shirt.name}}</div>
+          <div>${{shirt.price}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +38,7 @@
     data() {
       return {
         products: json.products,
-        category: ['Price - Low to High', 'Price - High to Low', 'Sleeve - Short to Long', 'Sleeve - Long to Short'],
+        category: ['Price - Low to High', 'Price - High to Low'],
         selectedCategory: '',
         sizes: ['All', 'S', 'M', 'L', 'XL'],
         selectedSize: 'All',
