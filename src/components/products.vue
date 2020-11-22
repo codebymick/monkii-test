@@ -5,8 +5,8 @@
       <div class="item-count">{{displayedProducts.length}} items</div>
       <div class="filters">
           <label class="filter-label">Order by: </label>
-          <select class="text-capitalize" v-model="showOrder" size="1.5" @change="orderByPrice(showOrder)">
-            <option v-for="(ord, ordIndex) in category" :key="ordIndex" :value="orderedBy" >{{ord}}</option>
+          <select class="text-capitalize" v-model="selectedCat" size="1.5" @change="selectedCat!=selectedCat, changeOrder()">
+            <option v-for="(ord, ordIndex) in category" :key="ordIndex" :value="ord" >{{ord}}</option>
           </select>
 
         <label class="filter-label">Filter by Size: </label>
@@ -17,15 +17,20 @@
 
     </div>
     <div class="container">
-      <div class="item" v-for="(shirt, shirtIndex) in displayedProducts" :key="shirtIndex">
-        <div class="image-wrapper">
-          <img :src="require('../assets/products/' + shirt.image)" :alt="shirt.name">
-        </div>
-        <div class="item-data">
-          <div>{{shirt.name}}</div>
-          <div>${{shirt.price}}</div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4" v-for="(shirt, shirtIndex) in displayedProducts" :key="shirtIndex">
+          <div class="item">
+            <div class="image-wrapper">
+              <img :src="require('../assets/products/' + shirt.image)" :alt="shirt.name">
+            </div>
+            <div class="item-data">
+              <div>{{shirt.name}}</div>
+              <div>${{shirt.price}}</div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -39,7 +44,7 @@
       return {
         products: json.products,
         category: ['Price - Low to High', 'Price - High to Low'],
-        selectedCategory: '',
+        selectedCat: 'Price - Low to High',
         sizes: ['All', 'S', 'M', 'L', 'XL'],
         selectedSize: 'All',
         displayedProducts: []
@@ -58,6 +63,13 @@
               }
             }
           }
+        }
+      },
+      changeOrder() {
+        if (this.selectedCat != 'Price - Low to High') {
+          return this.displayedProducts.sort((a, b) => (a.price > b.price) ? -1 : 1);
+        } else {
+          return this.displayedProducts.sort((a, b) => (a.price < b.price) ? -1 : 1);
         }
       }
     },

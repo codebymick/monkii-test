@@ -9,8 +9,8 @@
     background-color: #777777;
     padding: 10px 30px; }
   #app .products {
-    margin-top: 40px;
-    padding: 70px 20px 0;
+    margin-top: 10px;
+    padding: 40px 20px 0;
     color: black; }
     #app .products .status-line {
       padding-bottom: 10px;
@@ -21,31 +21,25 @@
         float: right; }
         #app .products .status-line .filters .filter-label:last-of-type {
           padding-left: 10px; }
-    #app .products .container {
-      border: 2px solid #cccccc;
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between; }
-      #app .products .container .item {
-        width: 32%;
-        margin-bottom: 2%;
-        /* (100-32*3)/2 */
-        position: relative;
-        background-color: white;
-        text-align: center; }
-        #app .products .container .item .image-wrapper {
-          padding-top: 2vh;
-          height: 30vh;
-          flex-grow: 1; }
-          #app .products .container .item .image-wrapper img {
-            max-height: 80%;
-            min-width: 80%;
-            object-fit: contain;
-            vertical-align: top;
-            horiz-align: center; }
-        #app .products .container .item .item-data {
-          text-align: left;
-          padding-left: 20px; }
+    #app .products .container .item {
+      width: 100%;
+      margin-bottom: 2%;
+      position: relative;
+      background-color: white;
+      text-align: center; }
+      #app .products .container .item .image-wrapper {
+        padding-top: 2vh;
+        height: 30vh;
+        flex-grow: 1; }
+        #app .products .container .item .image-wrapper img {
+          width: 100%;
+          object-fit: contain;
+          vertical-align: top;
+          horiz-align: center;
+          max-height: 90%; }
+      #app .products .container .item .item-data {
+        width: 100%;
+        text-align: left;
+        padding-left: 20px; }
 
 /*# sourceMappingURL=style.css.map */
